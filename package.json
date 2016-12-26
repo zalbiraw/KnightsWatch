@@ -14,6 +14,8 @@
     "babel-preset-latest": "6.16.0",
     "babel-preset-react": "6.16.0",
     "babelify": "7.3.0",
+    "bluebird": "^3.4.7",
+    "bookshelf": "^0.10.2",
     "browserify": "13.1.1",
     "eslint": "^3.12.2",
     "eslint-plugin-react": "^6.8.0",
@@ -25,11 +27,16 @@
     "gulp-uglify": "^2.0.0",
     "gulp-util": "3.0.7",
     "gulp-watch": "^4.3.11",
+    "knex": "^0.12.6",
+    "pg": "^6.1.2",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-router": "v4.0.0-alpha.6",
     "vinyl-source-stream": "^1.1.0",
     "yargs": "6.5.0"
+  },
+  "devDependencies": {
+    "sqlite3": "^3.1.8"
   },
   "author": "Zaid Albirawi",
   "license": "ISC"

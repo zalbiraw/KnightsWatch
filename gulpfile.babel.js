@@ -5,10 +5,15 @@ import browserify   from 'browserify'
 import source       from 'vinyl-source-stream'
 import express      from 'express'
 
+import Knex         from 'knex'
+import Bookshelf    from 'bookshelf'
+
 import { configs, Logger } from './helpers/helpers'
 
 const g                       = plugins(),
       app                     = express(),
+      knex                    = Knex([configs.db]),
+      bookshelf               = Bookshelf(knex),
       { port, src, dest }     = configs.app,
       { info, error, debug }  = Logger(argv, g.util)
 
