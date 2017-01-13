@@ -8,4 +8,4 @@ WORKDIR     /var/www
 
 EXPOSE      $PORT
 
-CMD         npm install && npm run bundle && npm run serve
+CMD         npm install && npm run serve

@@ -1,20 +1,20 @@
 export default function(args, gutil) {
   const { log, colors } = gutil,
-        ERROR_LEVEL = 1 | 1 << 1,
-        WARN_LEVEL  = ERROR_LEVEL | 1 << 2,
-        INFO_LEVEL  = WARN_LEVEL | 1 << 2,
-        DEBUG_LEVEL = INFO_LEVEL | 1 << 3,
         ERROR   = 1,
         WARN    = 1 << 1,
         INFO    = 1 << 2,
-        DEBUG   = 1 << 3
+        DEBUG   = 1 << 3,
+        ERROR_LEVEL = ERROR,
+        WARN_LEVEL  = ERROR_LEVEL | WARN,
+        INFO_LEVEL  = WARN_LEVEL | INFO,
+        DEBUG_LEVEL = INFO_LEVEL | DEBUG
 
   let log_level
 
   if (args.error) {
     log_level = ERROR_LEVEL
     info('Log Level: Up to errors')
-  } else if (args.warning) {
+  } else if (args.warn) {
     log_level = WARN_LEVEL
     info('Log Level: Up to warnings')
   } else if (args.info) {
@@ -55,7 +55,7 @@ export default function(args, gutil) {
     log_helper(ERROR, msg)
   }
 
-  function warning(msg) {
+  function warn(msg) {
     log_helper(WARN, msg)
   }
 
@@ -93,5 +93,5 @@ export default function(args, gutil) {
     }
   }
 
-  return { error, warning, info, debug }
+  return { error, warn, info, debug }
 }

@@ -1,0 +1,13 @@
+{
+  "name": "knightswatch",
+  "description": "KnightsWatch is a web application that will be employed by the London Knights Hockey team to imporve their scouting system.",
+  "main": "index.js",
+  "authors": [
+    "Zaid Albirawi"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "reset-css": "^2.2.0",
+    "materialize": "^0.97.8"
+  }
+}

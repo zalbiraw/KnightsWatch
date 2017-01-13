@@ -9,21 +9,21 @@
       "experimentalObjectRestSpread": true,
       "jsx": true
     },
-    "sourceType": "module"  
+    "sourceType": "module"
   },
   "plugins": [
     "react"
   ],
   "rules": {
     "indent": [
-      "error", 
+      "error",
       2,
       {
         "SwitchCase": 1,
         "VariableDeclarator": {
           "var": 2,
           "let": 2,
-          "const": 3 
+          "const": 3
         },
         "MemberExpression": 1
       }

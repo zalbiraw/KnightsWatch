@@ -3,29 +3,43 @@ import plugins      from 'gulp-load-plugins'
 import { argv }     from 'yargs'
 import browserify   from 'browserify'
 import source       from 'vinyl-source-stream'
-import express      from 'express'
-
-import Knex         from 'knex'
-import Bookshelf    from 'bookshelf'
+import wiredep      from 'wiredep'
+import BrowserSync  from 'browser-sync'
+import history      from 'connect-history-api-fallback'
 
 import { configs, Logger } from './helpers/helpers'
 
 const g                       = plugins(),
-      app                     = express(),
-      knex                    = Knex([configs.db]),
-      bookshelf               = Bookshelf(knex),
-      { port, src, dest }     = configs.app,
-      { info, error, debug }  = Logger(argv, g.util)
+      { entry, src, dest }    = configs.app,
+      { info, error, debug }  = Logger(argv, g.util),
+      browserSync             = BrowserSync.create()
 
-let isProduction = true
+let isProduction  = true,
+    { port }      = configs.app
+
 process.env.NODE_ENV = 'production'
-app.use('/', express.static('public'))
 
-gulp.task('bundle', (done) => {
-  debug('bundling...')
+gulp.task('html', () => {
+  const sources = gulp.src(
+    [
+      dest.path + dest.scripts.path + dest.scripts.entry,
+      dest.path + dest.styles.path + dest.styles.entry
+    ],
+    {
+      read: false
+    }
+  )
 
-  browserify({
-    entries: src.path + src.entry,
+  return gulp.src(src.path + src.html.entry)
+    .on('error', error)
+    .pipe(wiredep.stream({ ignorePath: '../public' }))
+    .pipe(g.inject(sources, { ignorePath: '/public/' }))
+    .pipe(gulp.dest(dest.path))
+})
+
+gulp.task('scripts', () => {
+  return browserify({
+    entries: src.path + src.scripts.path + src.scripts.entry,
     transform: [
       [
         'babelify',
@@ -40,34 +54,85 @@ gulp.task('bundle', (done) => {
   })
   .bundle()
   .on('error', error)
-  .pipe(source(dest.js.entry))
+  .pipe(source(dest.scripts.entry))
   .pipe(g.if(isProduction, g.streamify(g.uglify())))
-  .pipe(gulp.dest(dest.path + dest.js.path))
-
-  debug('bundled')
-  done()
+  .pipe(gulp.dest(dest.path + dest.scripts.path))
+  .pipe(g.if(!isProduction, browserSync.stream()))
 })
 
-gulp.task('serve', (done) => {
-  app.listen(port)
-  done()
+gulp.task('styles', () => {
+  return gulp.src(src.path + src.styles.path + src.styles.entry)
+    .on('error', error)
+    .pipe(g.postcss([
+      require('postcss-import'),
+      require('postcss-nested'),
+      require('postcss-cssnext'),
+      require('cssnano')({ autoprefixer: false })
+    ]))
+    .pipe(gulp.dest(dest.path + dest.styles.path))
+    .pipe(g.if(!isProduction, browserSync.stream()))
 })
 
-gulp.task('watch', (done) => {
-  done()
+gulp.task('images', () => {
+  return gulp.src(src.path + src.images.path + src.images.entry)
+    .on('error', error)
+    .pipe(gulp.dest(dest.path + dest.images.path))
 })
 
 gulp.task('dev', (done) => {
   isProduction = false
+  port = 5000
   process.env.NODE_ENV = 'development'
+
+  browserSync.init({
+    server: {
+      baseDir: dest.path,
+      middleware: [ history() ]
+    }
+  })
+
   done()
 })
 
-gulp.task('default', gulp.series(
-  'dev',
-  'bundle',
+gulp.task('bundle', gulp.series(
   gulp.parallel(
-    'serve',
-    'watch'
-  )
+    'scripts',
+    'styles',
+    'images'
+  ),
+  'html'
+))
+
+gulp.task('watch', (done) => {
+
+  gulp.watch(src.path + src.html.entry, gulp.series('html'))
+  gulp.watch(src.path + src.scripts.path, gulp.series('scripts'))
+  gulp.watch(src.path + src.styles.path, gulp.series('styles'))
+  gulp.watch(src.path + src.images.path, gulp.series('images'))
+
+  done()
+})
+
+gulp.task('serve', (done) => {
+  const options = {
+    script: entry,
+    delayTime: 1,
+    env: {
+      'PORT': port,
+      'NODE_ENV': process.env.NODE_ENV
+    },
+    watch: [ 'server.js', 'routes/*' ],
+    exec: 'babel-node'
+  }
+
+  return g.nodemon(options)
+})
+
+gulp.task('default', gulp.series(
+  gulp.parallel(
+    'dev',
+    'bundle'
+  ),
+  'watch',
+  'serve'
 ))
