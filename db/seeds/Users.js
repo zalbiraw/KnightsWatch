@@ -8,6 +8,13 @@ exports.seed = function(knex, Promise) {
           role_id: 1,
           email: 'zalbiraw@gmail.com',
           password: 'topsecret'
+        }),
+        knex('users').insert({
+          first: 'Jeff',
+          last: 'Shantz',
+          role_id: 1,
+          email: 'jshantz@uwo.com',
+          password: 'topsecret'
         })
       ]);
     });

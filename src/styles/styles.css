@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
+@import './components/theme.postcss';
 @import './components/404.postcss';
 @import './components/menu.postcss';
 @import './components/console.postcss';
@@ -13,26 +14,4 @@ html ,body, #react-app, #react-app > div {
 
 #react-app {
   font-family: var(--roboto);
-}
-
-.container {
-  margin: auto;
-}
-
-@media screen and (max-width: 900px) {
-  .container {
-    width: 100%;
-  }
-}
-
-@media screen and (min-wdith: 901px) and (max-width: 1200px) {
-  .container {
-    width: 900px;
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  .container {
-    width: 1200px;
-  }
 }

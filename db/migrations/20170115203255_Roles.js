@@ -1,8 +1,8 @@
 exports.up = function(knex, Promise) {
   return Promise.all([
     knex.schema.dropTableIfExists('roles').createTable('roles', function(table) {
-      table.increments();
-      table.string('role')
+      table.increments().primary().unique().notNullable()
+      table.string('role').notNullable()
     })
   ])
 }

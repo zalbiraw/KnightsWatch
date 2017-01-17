@@ -1,6 +1,9 @@
 :root {
-  --primary-green: #006633;
-  --primary-gold: #CC9900;
+  --primary-green: #1B5E20;
+
+  --primary-gold: #F9A825;
+  --secondary-gold: #FBC02D;
+  --ternary-gold: #F57F17;
 
   --gray-0: #FAFAFA;
   --gray-1: #F5F5F5;
