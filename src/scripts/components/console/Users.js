@@ -1,7 +1,8 @@
 import React from 'react'
 
-import UsersTable from './users/UsersTable'
-import AddUser    from './users/AddUser'
+import UsersTable   from './users/UsersTable'
+import AddUser      from './users/AddUser'
+import InvitesTable from './users/InvitesTable'
 
 export default class Users extends React.Component {
   constructor() {
@@ -50,6 +51,9 @@ export default class Users extends React.Component {
         />
         <AddUser
           roles         = {roles}
+          updateInvites = {updateInvites}
+        />
+        <InvitesTable
           invites       = {invites}
           updateInvites = {updateInvites}
         />
@@ -70,14 +74,17 @@ export default class Users extends React.Component {
   }
 
   updateUsers(users) {
+    // Materialize.toast('Users updated!!', 3000, 'rounded')
     this.setState({ users })
   }
 
   updateRoles(roles) {
+    // Materialize.toast('Roles updated!', 3000, 'rounded')
     this.setState({ roles })
   }
 
   updateInvites(invites) {
+    // Materialize.toast('Invites updated!', 3000, 'rounded')
     this.setState({ invites })
   }
 }

@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 @import './components/theme.postcss';
+@import './components/table.postcss';
 @import './components/404.postcss';
 @import './components/menu.postcss';
 @import './components/console.postcss';

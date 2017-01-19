@@ -23,6 +23,15 @@ function get(res, query) {
   })
 }
 
+function getUsers(res) {
+  get(res, Users().join('roles', 'users.role_id', 'roles.id')
+    .select('first', 'last', 'role', 'email'))
+}
+
+function getInvites(res) {
+  get(res, Invites().select('email', 'role_id'))
+}
+
 router
   .get('/roles', (req, res) => {
     get(res, Roles().select())
@@ -30,15 +39,22 @@ router
 
 router
   .get('/users', (req, res) => {
-    const query = Users().join('roles', 'users.role_id', 'roles.id')
-                    .select('first', 'last', 'role', 'email')
-    get(res, query)
+    getUsers(res)
+  })
+
+  .delete('/users', (req, res) => {
+    Users().select('*').where(req.body).del().then(() => {
+      getUsers(res)
+    }).catch(() => {
+      res.status(500).json(err)
+    })
   })
 
 router
   .get('/invites', (req, res) => {
-    get(res, Invites().select('email', 'role_id'))
+    getInvites(res)
   })
+
   .post('/invites', (req, res) => {
     Users().select('*').where({
       email: req.body.email
@@ -53,11 +69,19 @@ router
           email: req.body.email,
           role_id: req.body.role_id
         }).then(() => {
-          get(res, Invites().select('email', 'role_id'))
+          getInvites(res)
         }).catch((err) => {
           res.status(500).json(err)
         })
       }
+    })
+  })
+
+  .delete('/invites', (req, res) => {
+    Invites().select('*').where(req.body).del().then(() => {
+      getInvites(res)
+    }).catch(() => {
+      res.status(500).json(err)
     })
   })
 
@@ -71,7 +95,6 @@ router
           msg: 'not invited'
         })
       } else {
-        console.log(req.body.first, req.body.last, req.body.password, data)
         Users().insert({
           first: req.body.first,
           last: req.body.last,

@@ -2,18 +2,16 @@ import React from 'react'
 
 import Table from '../../Table'
 
-export default class UsersTable extends React.Component {
+export default class InvitesTable extends React.Component {
   render() {
     const props   = this.props,
-          users   = props.users,
-          update  = props.updateUsers,
-          index   = 'users-table',
-          api     = '/api/users',
+          invites = props.invites,
+          update  = props.updateInvites,
+          index   = 'invites-table',
+          api     = '/api/invites',
           headers = [
-            [ 'first',  'First Name' ],
-            [ 'last',   'Last Name' ],
-            [ 'role',   'Role' ],
-            [ 'email',  'Email' ]
+            [ 'email',  'Email' ],
+            [ 'role_id',   'Role' ]
           ],
           dialogs = [
             {
@@ -21,7 +19,7 @@ export default class UsersTable extends React.Component {
                 id: index + '-delete',
                 type: 'confirmation',
                 title: 'Delete',
-                body:'Are you sure you would like to delete this user?'
+                body:'Are you sure you would like to delete this invite?'
               },
               handle: (entry) => {
                 fetch(api, {
@@ -42,22 +40,21 @@ export default class UsersTable extends React.Component {
             }
           ]
 
-    Object.keys(users).map((key) => {
-      users[key].edit = true
-      users[key].delete = true
+    Object.keys(invites).map((key) => {
+      invites[key].delete = true
     })
 
     return (
-      <div className = 'users-table'>
+      <div className = {index}>
         <div className = 'row'>
-          <h5>Users</h5>
+          <h5>Invites</h5>
         </div>
         <div className = 'row'>
           <Table
             index     = {index}
             idBy      = 'email'
             headers   = {headers}
-            data      = {users}
+            data      = {invites}
             api       = {api}
             dialogs   = {dialogs}
             update    = {update}

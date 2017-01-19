@@ -1,13 +1,8 @@
 import React from 'react'
 
-import Table from './Table'
+import Table from '../../Table'
 
 export default class AddUser extends React.Component {
-  constructor() {
-    super()
-
-    this.handleSubmit = this.handleSubmit.bind(this)
-  }
 
   componentDidUpdate() {
     $('select').material_select()
@@ -18,12 +13,7 @@ export default class AddUser extends React.Component {
   }
 
   render() {
-    const roles   = this.props.roles,
-          invites = this.props.invites,
-          headers = [
-            [ 'email',  'Email' ],
-            [ 'role_id',   'Role' ]
-          ]
+    const roles = this.props.roles
 
     return (
       <div className = 'add-user '>
@@ -33,7 +23,33 @@ export default class AddUser extends React.Component {
         <form
           id        = 'add-user'
           className = 'row'
-          onSubmit  = {this.handleSubmit}
+          onSubmit  = {(e) => {
+            e.preventDefault()
+
+            const target  = $(e.currentTarget),
+                  email   = target.find('input[name=email]')[0].value,
+                  role_id = target.find('select[name=role]')[0].value
+
+            const updateInvites = this.props.updateInvites
+
+            fetch('/api/invites', {
+              method: 'POST',
+              headers: new Headers({
+                'Content-Type': 'application/json'
+              }),
+              body: JSON.stringify({
+                email,
+                role_id
+              })
+            }).then((res) => {
+              if (res.status == 200) {
+                res.json().then((json) => {
+                  $('#add-user').trigger('reset')
+                  updateInvites(json)
+                })
+              }
+            })
+          }}
         >
           <div className = 'input-field col s4'>
             <label htmlFor = 'email'>Email</label>
@@ -74,45 +90,7 @@ export default class AddUser extends React.Component {
             </button>
           </div>
         </form>
-        <div className = 'row'>
-          <h5>Invited Users</h5>
-        </div>
-        <div className = 'row'>
-          <Table
-            headers = {headers}
-            data    = {invites}
-            sortBy  = 'email'
-            update  = {this.props.updateInvites}
-          />
-        </div>
       </div>
     )
-  }
-
-  handleSubmit(e) {
-    e.preventDefault()
-
-    const target  = $(e.currentTarget),
-          email   = target.find('input[name=email]')[0].value,
-          role_id = target.find('select[name=role]')[0].value
-
-    const updateInvites = this.props.updateInvites
-
-    fetch('/api/invites', {
-      method: 'POST',
-      headers: new Headers({
-        'Content-Type': 'application/json'
-      }),
-      body: JSON.stringify({
-        email,
-        role_id
-      })
-    }).then((res) => {
-      if (res.status == 200) {
-        res.json().then((json) => {
-          updateInvites(json)
-        })
-      }
-    })
   }
 }
