@@ -53,6 +53,7 @@ export default function(args, gutil) {
 
   function error(msg) {
     log_helper(ERROR, msg)
+    this.emit('end')
   }
 
   function warn(msg) {

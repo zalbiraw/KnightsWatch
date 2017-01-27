@@ -10,13 +10,13 @@ import history      from 'connect-history-api-fallback'
 import { configs, Logger } from './helpers/helpers'
 
 const g                       = plugins(),
-      { entry, src, dest }    = configs.app,
+      { server, client }      = configs,
+      { src, dest }           = client,
       { info, error, debug }  = Logger(argv, g.util),
       browserSync             = BrowserSync.create()
 
-let isProduction  = true,
-    { port }      = configs.app
-
+let isProduction  = true
+process.env.PORT = 3000
 process.env.NODE_ENV = 'production'
 
 gulp.task('html', () => {
@@ -40,17 +40,7 @@ gulp.task('html', () => {
 gulp.task('scripts', () => {
   return browserify({
     entries: src.path + src.scripts.path + src.scripts.entry,
-    transform: [
-      [
-        'babelify',
-        {
-          presets: [
-            'latest',
-            'react'
-          ]
-        }
-      ]
-    ]
+    transform: [[ 'babelify' ]]
   })
   .bundle()
   .on('error', error)
@@ -81,13 +71,16 @@ gulp.task('images', () => {
 
 gulp.task('dev', (done) => {
   isProduction = false
-  port = 5000
+  process.env.PORT = 5000
   process.env.NODE_ENV = 'development'
 
+  done()
+})
+
+gulp.task('browser', (done) => {
   browserSync.init({
-    server: {
-      baseDir: dest.path,
-      middleware: [ history() ]
+    proxy: {
+      target: 'localhost:5000'
     }
   })
 
@@ -115,13 +108,12 @@ gulp.task('watch', (done) => {
 
 gulp.task('serve', (done) => {
   const options = {
-    script: entry,
-    delayTime: 1,
+    script: server.path + server.entry,
+    delayTime: 3,
     env: {
-      'PORT': port,
       'NODE_ENV': process.env.NODE_ENV
     },
-    watch: [ 'server.js', 'routes/*' ],
+    watch: [ '*' ],
     exec: 'babel-node'
   }
 
@@ -134,5 +126,8 @@ gulp.task('default', gulp.series(
     'bundle'
   ),
   'watch',
-  'serve'
+  gulp.parallel(
+    'serve',
+    'browser'
+  )
 ))

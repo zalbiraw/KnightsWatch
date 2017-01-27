@@ -1,0 +1,53 @@
+table {
+   user-select: none;
+
+   th {
+    cursor: pointer;
+
+    font-weight: bold;
+
+    .sort {
+      position: absolute;
+
+      display: inline-flex;
+      flex-direction: column;
+
+      height: 0;
+
+      i {
+        position: relative;
+        vertical-align: middle;
+        font-size: 20px;
+
+        &:nth-child(1) {
+          top: -6px;
+        }
+
+        &:nth-child(2) {
+          top: -20px;
+        }
+      }
+
+      &.up {
+        i:nth-child(1) {
+          color: var(--primary-gold);
+        }
+      }
+
+      &.down {
+        i:nth-child(2) {
+          color: var(--primary-gold);
+        }
+      }
+    }
+
+    .responsive-fix {
+      display: inline-table;
+      width: 10px;
+    }
+  }
+}
+
+#invite-user-button {
+  width: 100%
+}

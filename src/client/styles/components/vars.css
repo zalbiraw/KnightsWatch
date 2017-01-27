@@ -1,0 +1,24 @@
+:root {
+  --primary-green: #1B5E20;
+
+  --primary-gold: #F9A825;
+  --secondary-gold: #FBC02D;
+  --ternary-gold: #F57F17;
+
+  --gray-0: #FAFAFA;
+  --gray-1: #F5F5F5;
+  --gray-2: #EEEEEE;
+  --gray-3: #E0E0E0;
+  --gray-4: #BDBDBD;
+  --gray-5: #9E9E9E;
+  --gray-6: #757575;
+  --gray-7: #616161;
+  --gray-8: #424242;
+  --gray-9: #212121;
+
+  --background-color: var(--gray-3);
+
+  --avro: 'Arvo', sans-serif;
+  --playfair: 'Playfair Display', serif;
+  --roboto: 'Roboto', sans-serif;
+}

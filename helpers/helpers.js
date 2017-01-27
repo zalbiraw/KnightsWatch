@@ -1,7 +1,8 @@
 import Logger from './logger'
 
 const configs = {
-  app: require('../configs/app.config'),
+  client: require('../configs/client.config'),
+  server: require('../configs/server.config'),
   db: require('../knexfile')
 }
 
