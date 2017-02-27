@@ -4,9 +4,21 @@ const createToken = (secret, email, role_id) => {
 
   const token = { coin: jwt.sign({ email }, secret, { expiresIn: '1h' }) }
 
-  if (role_id == 1) {
-    token.isAdmin = true
+  switch(role_id) {
+
+    case 3:
+      token.isAdmin = true
+      break
+
+    case 2:
+      token.isScout = true
+      break
+
+    case 1:
+      token.isDataEntry = true
+
   }
+
 
   return token
 

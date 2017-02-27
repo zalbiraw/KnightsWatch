@@ -59,7 +59,7 @@ const UsersTable = ({ users, roles, functions }) => (
           idBy      = 'email'
           headers   = {headers}
           data      = {users}
-          api       = {'/api/auth/users'}
+          api       = {'/api/secure/admin/users'}
           dialogs   = {{ edit: [ first, last, { ...role_id, options: roles }, email ], delete: true }}
           functions = {functions}
         />

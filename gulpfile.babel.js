@@ -71,7 +71,7 @@ gulp.task('images', () => {
 
 gulp.task('dev', (done) => {
   isProduction = false
-  process.env.PORT = 5000
+  process.env.PORT = 8080
   process.env.NODE_ENV = 'development'
 
   done()
@@ -80,7 +80,7 @@ gulp.task('dev', (done) => {
 gulp.task('browser', (done) => {
   browserSync.init({
     proxy: {
-      target: 'localhost:5000'
+      target: 'localhost:' + process.env.PORT
     }
   })
 
@@ -109,11 +109,10 @@ gulp.task('watch', (done) => {
 gulp.task('serve', (done) => {
   const options = {
     script: server.path + server.entry,
-    delayTime: 3,
     env: {
       'NODE_ENV': process.env.NODE_ENV
     },
-    watch: [ '*' ],
+    watch: [ 'server/*' ],
     exec: 'babel-node'
   }
 

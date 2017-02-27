@@ -1,5 +1,6 @@
 import React, { PropTypes }  from 'react'
 
+import Loading      from './Loading'
 import UsersTable   from './console/UsersTable'
 import InviteUser   from './console/InviteUser'
 import InvitesTable from './console/InvitesTable'
@@ -8,11 +9,7 @@ class Console extends React.Component {
   constructor() {
     super()
 
-    this.state = {
-      roles: [],
-      users: [],
-      invites: []
-    }
+    this.state = {}
 
     this.getRoles = this.getRoles.bind(this)
     this.getUsers = this.getUsers.bind(this)
@@ -25,19 +22,21 @@ class Console extends React.Component {
   componentWillMount() {
     const get  = this.props.functions.get
 
-    get('/api/auth/admin/roles', {
+    get('/api/secure/admin/roles', {
       success: {
         callback: this.updateRoles,
         preventNotification: true
       }
     })
-    get('/api/auth/admin/users', {
+
+    get('/api/secure/admin/users', {
       success: {
         callback: this.updateUsers,
         preventNotification: true
       }
     })
-    get('/api/auth/admin/invites', {
+
+    get('/api/secure/admin/invites', {
       success: {
         callback: this.updateInvites,
         preventNotification: true
@@ -57,6 +56,12 @@ class Console extends React.Component {
           updateUsers   = this.updateUsers,
           updateInvites = this.updateInvites,
           functions     = this.props.functions
+
+    if (!roles || !users || !invites) {
+      return (
+        <Loading />
+      )
+    }
 
     $(document).ready(function(){
       $('.modal').modal()

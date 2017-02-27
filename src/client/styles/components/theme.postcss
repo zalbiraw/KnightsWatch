@@ -1,23 +1,41 @@
 @import 'vars.css';
 
 nav {
-  background-color: var(--primary-green);
+  background-color: var(--primary-green)
 }
 
 .btn,
-.btn-large {
-  background-color: var(--primary-gold);
+.btn-large,
+.btn-floating {
+  user-select: none;
+  background-color: var(--primary-gold)
 }
 
 .btn:hover,
 .btn-large:hover {
-  background-color: var(--secondary-gold);
+  background-color: var(--secondary-gold)
 }
 
 .btn:focus,
 .btn-large:focus,
 .btn-floating:focus {
   background-color: var(--ternary-gold)
+}
+
+.fixed-action-btn ul .btn-floating {
+  background-color: var(--primary-green)
+}
+
+.fixed-action-btn ul .btn-floating:hover {
+  background-color: var(--secondary-green)
+}
+
+.gold-circle {
+  border-color: var(--primary-gold)
+}
+
+.green-circle {
+  border-color: var(--primary-green)
 }
 
 .dropdown-content li > a,

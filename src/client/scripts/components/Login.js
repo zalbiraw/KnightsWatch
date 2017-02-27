@@ -2,27 +2,9 @@ import React, { PropTypes } from 'react'
 
 import Field from './Structures/Form/Field'
 
-const form      = 'register',
-      style     = 'col s12',
-      required  = true,
-      fields    = {
-        email: {
-          id: 'email',
-          style,
-          type: 'email',
-          name: 'email',
-          required,
-          label: 'Email'
-        },
-        password: {
-          id: 'password',
-          style,
-          type: 'password',
-          name: 'password',
-          required,
-          label: 'Password'
-        }
-      }
+import fields from './Login/fields'
+
+const form = 'register'
 
 const Login = ({ functions }) => (
   <form
@@ -33,11 +15,9 @@ const Login = ({ functions }) => (
       const target  = $(e.currentTarget),
             body    = functions.getFormData($('#' + form))
 
-      const success = (json, res) => {
-        functions.setUser(json)
-      }
+      const success = json => functions.setUser(json)
 
-      functions.post('/api/login', body, { success })
+      functions.post('/api/auth/login', body, { success })
     }}
   >
     <div className = 'row'>

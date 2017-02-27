@@ -1,5 +1,6 @@
 :root {
   --primary-green: #1B5E20;
+  --secondary-green: #2E7D32;
 
   --primary-gold: #F9A825;
   --secondary-gold: #FBC02D;
@@ -16,7 +17,7 @@
   --gray-8: #424242;
   --gray-9: #212121;
 
-  --background-color: var(--gray-3);
+  --background-color: white;
 
   --avro: 'Arvo', sans-serif;
   --playfair: 'Playfair Display', serif;

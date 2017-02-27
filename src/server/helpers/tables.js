@@ -12,7 +12,11 @@ const Tables = (knex) => {
     return knex('invites')
   }
 
-  return { Users, Roles, Invites }
+  const Players = () => {
+    return knex('players')
+  }
+
+  return { Users, Roles, Invites, Players }
 }
 
 export default Tables

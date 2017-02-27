@@ -3,7 +3,7 @@ import { Redirect } from 'react-router'
 
 import Menu from '../components/Menu'
 
-const Renderer = (user, removeUser) => {
+const Renderer = (user, functions) => {
 
   const router = (Component, restrictions) => {
     for (let i = 0; i < restrictions.length; ++i) {
@@ -26,6 +26,13 @@ const Renderer = (user, removeUser) => {
           if (!user.isAdmin) route = true
           break
 
+        case 'isNotScout':
+          if (!user.isScout) route = true
+          break
+
+        case 'isDataEntry':
+          if (user.isDataEntry) route = true
+
       }
 
       if (route) return <Redirect to = {restriction.redirect} />
@@ -39,8 +46,8 @@ const Renderer = (user, removeUser) => {
     return (
       <div>
         <Menu
-          user        = {user}
-          removeUser  = {removeUser}
+          user      = {user}
+          functions = {functions}
         />
         <div className = 'container'>
           {Component}

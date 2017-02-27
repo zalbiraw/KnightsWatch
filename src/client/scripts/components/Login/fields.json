@@ -1,0 +1,18 @@
+{
+  "email": {
+    "id": "email",
+    "style": "col s12",
+    "type": "email",
+    "name": "email",
+    "required": true,
+    "label": "Email"
+  },
+  "password": {
+    "id": "password",
+    "style": "col s12",
+    "type": "password",
+    "name": "password",
+    "required": true,
+    "label": "Password"
+  }
+}

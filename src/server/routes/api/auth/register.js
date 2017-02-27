@@ -1,7 +1,7 @@
 import express  from 'express'
 import bcrypt   from 'bcrypt'
 
-import { createToken } from './helpers/token'
+import { createToken } from '../helpers/token'
 
 const hashPassword = async(password) => {
   return await bcrypt.hashSync(password, 12)

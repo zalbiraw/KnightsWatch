@@ -6,9 +6,11 @@
 @import './components/table.postcss';
 @import './components/404.postcss';
 @import './components/menu.postcss';
+@import './components/loading.postcss';
 @import './components/login.postcss';
 @import './components/register.postcss';
 @import './components/console.postcss';
+@import './components/player.postcss';
 
 html ,body, #react-app, #react-app > div {
   width: 100%;

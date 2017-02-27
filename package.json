@@ -9,7 +9,9 @@
     "debug": "gulp --debug",
     "bundle": "gulp bundle",
     "serve": "gulp serve",
-    "lint": "eslint src/*"
+    "rollback": "knex migrate:rollback",
+    "latest": "knex migrate:latest",
+    "seed": "knex seed:run"
   },
   "dependencies": {
     "babel-cli": "6.18.0",

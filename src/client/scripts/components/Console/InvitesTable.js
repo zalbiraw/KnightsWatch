@@ -19,7 +19,7 @@ const InvitesTable = ({ invites, functions }) => (
         idBy      = 'email'
         headers   = {headers}
         data      = {invites}
-        api       = {'/api/auth/invites'}
+        api       = {'/api/secure/admin/invites'}
         dialogs   = {{ delete: true }}
         functions = {functions}
       />

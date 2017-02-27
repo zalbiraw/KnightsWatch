@@ -3,18 +3,25 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       return Promise.all([
         knex('users').insert({
-          first: 'Zaid',
-          last: 'Albirawi',
-          role_id: 1,
-          email: 'zalbiraw@gmail.com',
-          password: 'topsecret'
+          first: 'Admin',
+          last: 'Knights',
+          role_id: 3,
+          email: 'admin@knights.com',
+          password: '$2a$12$4ARyigZlQmiLlluQOImMNed.OiF6AsYtPb8NiYZ.u7RjKmBLVCrM6'
         }),
         knex('users').insert({
-          first: 'Jeff',
-          last: 'Shantz',
+          first: 'Scout',
+          last: 'Knights',
+          role_id: 2,
+          email: 'scout@knights.com',
+          password: '$2a$12$4ARyigZlQmiLlluQOImMNed.OiF6AsYtPb8NiYZ.u7RjKmBLVCrM6'
+        }),
+        knex('users').insert({
+          first: 'Data Entry',
+          last: 'Knights',
           role_id: 1,
-          email: 'jshantz@uwo.com',
-          password: 'topsecret'
+          email: 'de@knights.com',
+          password: '$2a$12$4ARyigZlQmiLlluQOImMNed.OiF6AsYtPb8NiYZ.u7RjKmBLVCrM6'
         })
       ]);
     });

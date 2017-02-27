@@ -1,14 +1,17 @@
-import express  from 'express'
+import express from 'express'
 
-import admin from './auth/admin'
+import register from './auth/register'
+import login    from './auth/login'
 
-const auth = (api_router, tables, authenticate) => {
+const auth = (api_router, { Users, Invites }, secret) => {
 
   const router = express.Router()
 
-  admin(router, tables)
+  register(router, { Users, Invites }, secret)
+  login(router, { Users }, secret)
 
-  api_router.use('/auth', authenticate(), router)
+  api_router.use('/auth', router)
+
 }
 
 export default auth

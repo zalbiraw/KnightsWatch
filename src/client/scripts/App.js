@@ -1,10 +1,11 @@
-import React            from 'react'
-import { Match, Miss }  from 'react-router'
+import React                      from 'react'
+import { Match, Miss, Redirect }  from 'react-router'
 
 import Register   from './components/Register'
 import Login      from './components/Login'
 import Dashboard  from './components/Dashboard'
 import Console    from './components/Console'
+import Player     from './components/Player'
 import ErrorPage  from './components/ErrorPage'
 
 import Requests from './helpers/Requests'
@@ -18,6 +19,9 @@ class App extends React.Component {
     super()
 
     this.state = {}
+
+    this.getError = this.getError.bind(this)
+    this.setError = this.setError.bind(this)
 
     this.getUser    = this.getUser.bind(this)
     this.setUser    = this.setUser.bind(this)
@@ -40,15 +44,23 @@ class App extends React.Component {
 
   render() {
 
-    const user        = this.getUser(),
-          coin        = (user ? user.coin : undefined),
+    const error       = this.getError(),
+          setError    = this.setError,
+          user        = this.getUser(),
           setUser     = this.setUser,
           removeUser  = this.removeUser,
-          { router }  = Renderer(user, removeUser),
+          coin        = (user ? user.coin : undefined),
           functions   = {
-            ...Requests(coin),
-            ...sharedHelpers
-          }
+            ...Requests(coin, setError, removeUser),
+            ...sharedHelpers,
+            setError,
+            removeUser
+          },
+          { router }  = Renderer(user, functions)
+
+    if (error) {
+      return this.renderError(error)
+    }
 
     const RegisterWrapper = () => {
       return router((
@@ -91,6 +103,30 @@ class App extends React.Component {
       ])
     }
 
+    const PlayerWrapper = ({ params }) => {
+      const player = params.id
+
+      if (player) {
+        return router((
+          <Player
+            player    = {player}
+            functions = {functions}
+          />
+        ), [
+          { condition: 'isNotLoggedIn', redirect: '/login' },
+          { condition: 'isDataEntry', redirect: '/' }
+        ])
+      }
+
+      return router((
+        <Player
+          functions = {functions}
+        />
+      ), [
+        { condition: 'isNotLoggedIn', redirect: '/login' }
+      ])
+    }
+
     const NotFound = () => (
       <ErrorPage
         code    = {404}
@@ -100,14 +136,40 @@ class App extends React.Component {
 
     return (
       <div>
-        <Match exactly pattern = '/'          component = {DashboardWrapper} />
-        <Match exactly pattern = '/register'  component = {RegisterWrapper} />
-        <Match exactly pattern = '/login'     component = {LoginWrapper} />
-        <Match exactly pattern = '/console'   component = {ConsoleWrapper} />
+        <Match exactly pattern = '/'            component = {DashboardWrapper} />
+        <Match exactly pattern = '/register'    component = {RegisterWrapper} />
+        <Match exactly pattern = '/login'       component = {LoginWrapper} />
+        <Match exactly pattern = '/console'     component = {ConsoleWrapper} />
+        <Match exactly pattern = '/player'      component = {PlayerWrapper} />
+        <Match exactly pattern = '/player/:id'  component = {PlayerWrapper} />
         <Miss component = {NotFound} />
       </div>
     )
 
+  }
+
+  getError() {
+    return this.state.error
+  }
+
+  setError(error, callback) {
+
+    if (callback) {
+
+      this.state.error = error
+      callback()
+
+    } else this.setState({ error })
+
+  }
+
+  renderError({ code, message }) {
+    return (
+      <ErrorPage
+        code    = {code}
+        message = {message}
+      />
+    )
   }
 
   getUser() {

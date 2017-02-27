@@ -6,11 +6,11 @@ module.exports = {
       filename: './citadel.sqlite'
     },
     migrations: {
-      directory: './src/server/db/migrations',
+      directory: './src/server/database/migrations',
       tableName: 'knex_migrations'
     },
     seeds: {
-      directory: './src/server/db/seeds'
+      directory: './src/server/database/seeds'
     },
     debug: false,
     useNullAsDefault: true
@@ -25,11 +25,11 @@ module.exports = {
       password: 'password'
     },
     migrations: {
-      directory: './src/server/db/migrations',
+      directory: './src/server/database/migrations',
       tableName: 'knex_migrations'
     },
     seeds: {
-      directory: './src/server/db/seeds'
+      directory: './src/server/database/seeds'
     }
   }
 

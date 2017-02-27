@@ -42,7 +42,7 @@ const InviteUser = ({ roles, functions }) => (
           functions.update(json)
         }
 
-        functions.post('/api/auth/invites', body, { success })
+        functions.post('/api/secure/admin/invites', body, { success })
       }}
     >
       <Field field = {fields.email} />

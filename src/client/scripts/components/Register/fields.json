@@ -1,0 +1,38 @@
+{
+  "first": {
+    "id": "first",
+    "style": "col s6",
+    "type": "text",
+    "name": "first",
+    "required": true,
+    "label": "Frist Name"
+  },
+  "last": {
+    "id": "last",
+    "style": "col s6",
+    "type": "text",
+    "name": "last",
+    "required": true,
+    "label": "Last Name"
+  },
+  "password": {
+    "id": "password",
+    "style": "col s6",
+    "title": "Password must be at least 8 characters\nPassword can be at most 128 characters\nPassword must be alphanumaric\n",
+    "type": "password",
+    "name": "password",
+    "pattern": "[A-z0-9]{8,128}",
+    "required": true,
+    "label": "Password"
+  },
+  "confirm": {
+    "id": "confirm",
+    "style": "col s6",
+    "title": "Password must be at least 8 characters\nPassword can be at most 128 characters\nPassword must be alphanumaric\n",
+    "type": "password",
+    "name": "confirm",
+    "pattern": "[A-z0-9]{8,128}",
+    "required": true,
+    "label": "Confirm Password"
+  }
+}

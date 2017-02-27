@@ -1,4 +1,4 @@
-const Requests = (coin) => {
+const Requests = (coin, setError, removeUser) => {
 
   let auth = {}
   if (coin !== undefined) {
@@ -42,8 +42,9 @@ const Requests = (coin) => {
 
   }
 
-  const methodsHelper = async (res, { success, failure }) => {
+  const methodsHelper = async (res, callbacks) => {
 
+    let { success, failure } = callbacks || {}
     const options = {
             onSuccess: {},
             onFailure: {}
@@ -70,11 +71,11 @@ const Requests = (coin) => {
     if (failure && typeof failure !== 'function') {
 
       if (failure.preventNotification) {
-        options.onSuccess.prevent = true
+        options.onFailure.prevent = true
       }
 
       if (failure.message) {
-        options.onSuccess.message = failure.message
+        options.onFailure.message = failure.message
       }
 
       if (failure.duration) {
@@ -85,11 +86,14 @@ const Requests = (coin) => {
 
     }
 
-    if (Math.floor(res.status / 100) == 2) {
+    const status      = res.status,
+          statusText  = res.statusText
+
+    if (Math.floor(status / 100) == 2) {
 
       if (!options.onSuccess.prevent) {
         notify(options.onSuccess.message ||
-          res.statusText,
+          statusText,
           options.onSuccess.duration)
       }
 
@@ -97,11 +101,15 @@ const Requests = (coin) => {
         success(await res.json(), res)
       }
 
+    } else if (status == 401) {
+
+      setError({ code: status, message: statusText }, removeUser)
+
     } else {
 
       if (!options.onFailure.prevent) {
         notify(options.onFailure.message ||
-          res.statusText,
+          statusText,
           options.onFailure.duration)
       }
 

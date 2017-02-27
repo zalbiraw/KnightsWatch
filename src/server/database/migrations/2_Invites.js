@@ -1,8 +1,8 @@
 exports.up = function(knex, Promise) {
   return Promise.all([
     knex.schema.dropTableIfExists('invites').createTable('invites', function(table) {
-      table.string('id').primary().unique().notNullable()
-      table.string('email', 254).unique().notNullable()
+      table.string('id').primary().unique()
+      table.string('email', 254).primary().unique()
       table.integer('role_id').references('roles.id').notNullable()
     })
   ])

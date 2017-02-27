@@ -2,57 +2,15 @@ import React, { PropTypes } from 'react'
 
 import Field from './Structures/Form/Field'
 
-const form      = 'register',
-      style     = 'col s6',
-      required  = true,
-      title     = 'Password must be at least 8 characters\n' +
-                  'Password can be at most 128 characters\n' +
-                  'Password must be alphanumaric\n',
-      pattern   = '[A-z0-9]{8,128}',
-      fields    = {
-        first: {
-          id: 'first',
-          style,
-          type: 'text',
-          name: 'first',
-          required,
-          label: 'Frist Name'
-        },
-        last: {
-          id: 'last',
-          style,
-          type: 'text',
-          name: 'last',
-          required,
-          label: 'Last Name'
-        },
-        password: {
-          id: 'password',
-          style,
-          title,
-          type: 'password',
-          name: 'password',
-          pattern,
-          required,
-          label: 'Password'
-        },
-        confirm: {
-          id: 'confirm',
-          style,
-          title,
-          type: 'password',
-          name: 'confirm',
-          pattern,
-          required,
-          label: 'Confirm Password'
-        }
-      }
+import fields from './Register/fields'
+
+const form = 'register'
 
 const Register = ({ functions }) => (
   <div>
-  <div className = 'row'>
-    <h5>Complete Registration</h5>
-  </div>
+    <div className = 'row'>
+      <h5>Complete Registration</h5>
+    </div>
     <form
       id        = {form}
       className = 'row'
@@ -75,7 +33,7 @@ const Register = ({ functions }) => (
           functions.notify('Passwords do not match!')
         } else {
           delete body.confirm
-          functions.post('/api/register', body, { success })
+          functions.post('/api/auth/register', body, { success })
         }
       }}
     >

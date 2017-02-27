@@ -10,7 +10,7 @@ const admin = (auth_router, { Invites, Users, Roles }) => {
 
   router.use((req, res, next) =>{
 
-    if (req.user.role_id != '1') {
+    if (req.user.role_id != '3') {
 
       res.statusMessage = 'Insufficient Access Privileges'
       res.sendStatus(401)
