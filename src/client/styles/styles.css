@@ -2,11 +2,14 @@
 @import url('https://fonts.googleapis.com/css?family=Arvo');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
+@import './components/vars.postcss';
 @import './components/theme.postcss';
 @import './components/table.postcss';
 @import './components/404.postcss';
 @import './components/menu.postcss';
+@import './components/search.postcss';
 @import './components/loading.postcss';
+@import './components/home.postcss';
 @import './components/login.postcss';
 @import './components/register.postcss';
 @import './components/console.postcss';

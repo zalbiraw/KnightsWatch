@@ -5,7 +5,7 @@ import Menu from '../components/Menu'
 
 const Renderer = (user, functions) => {
 
-  const router = (Component, restrictions) => {
+  const router = (Component, restrictions, options) => {
     for (let i = 0; i < restrictions.length; ++i) {
 
       const restriction = restrictions[i],
@@ -38,15 +38,21 @@ const Renderer = (user, functions) => {
       if (route) return <Redirect to = {restriction.redirect} />
     }
 
-    return wrapper(Component)
+    return wrapper(Component, options)
 
   }
 
-  const wrapper = (Component) => {
+  const wrapper = (Component, options) => {
+
+    let search = true
+
+    if (options && options.search === false) search = false
+
     return (
       <div>
         <Menu
           user      = {user}
+          search    = {search}
           functions = {functions}
         />
         <div className = 'container'>

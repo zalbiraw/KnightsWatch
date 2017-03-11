@@ -71,7 +71,7 @@ gulp.task('images', () => {
 
 gulp.task('dev', (done) => {
   isProduction = false
-  process.env.PORT = 8080
+  process.env.PORT = 80
   process.env.NODE_ENV = 'development'
 
   done()

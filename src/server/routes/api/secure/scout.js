@@ -40,7 +40,7 @@ const scout = (auth_router, { Players }) => {
 
       const { term }  = req.body
 
-      if (term && term.length > 2) {
+      if (term && term.length > 1) {
 
         const players = await Players().select()
               .where('first', 'like', `%${term}%`)

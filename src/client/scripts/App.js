@@ -3,7 +3,7 @@ import { Match, Miss, Redirect }  from 'react-router'
 
 import Register   from './components/Register'
 import Login      from './components/Login'
-import Dashboard  from './components/Dashboard'
+import Home       from './components/Home'
 import Console    from './components/Console'
 import Player     from './components/Player'
 import ErrorPage  from './components/ErrorPage'
@@ -82,14 +82,16 @@ class App extends React.Component {
       ])
     }
 
-    const DashboardWrapper = () => {
+    const HomeWrapper = () => {
       return router((
-        <Dashboard
+        <Home
           functions = {functions}
         />
       ), [
         { condition: 'isNotLoggedIn', redirect: '/login' }
-      ])
+      ], {
+        search: false
+      })
     }
 
     const ConsoleWrapper = () => {
@@ -136,7 +138,7 @@ class App extends React.Component {
 
     return (
       <div>
-        <Match exactly pattern = '/'            component = {DashboardWrapper} />
+        <Match exactly pattern = '/'            component = {HomeWrapper} />
         <Match exactly pattern = '/register'    component = {RegisterWrapper} />
         <Match exactly pattern = '/login'       component = {LoginWrapper} />
         <Match exactly pattern = '/console'     component = {ConsoleWrapper} />
