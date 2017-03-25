@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "knightswatch-160700",
+  "private_key_id": "59efe32a8c4575d3f56449cf7f7bc581353f07af",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDeHnOZd/JG27sO\nfnhb4svcxcQhwzPWhj011z8kL02PTD0IfFqvmAOZCdbTcDrdegLOJaw6c5DnfA1K\net+yqZgmmlWmQcWUib0IEjBPzdwIRy8/zmom4HzuQ1QCQcUetFtc003TAN0efmjc\nGic+vR3R77dEGLdW9dlhfr/Wc+jrtcu4QD9ksQImOaF/+LB0MQX8zz5tw9fR6em3\ndJHv8+6qNVPoEh6kTuQZlTpkZ0kRzHmhfiNXOxRsThhGVQGXcWShEjrjCZFWyvXb\n+YVYkSfln6+Xl/Th89KkWyynPcUksgpu0GH6H87RCk6MqlGQNc1+E1HOIzwxc/He\nbknMfSUPAgMBAAECggEBAL5bzqqKF4MOsYM8dB4bgqeUfgCJcJW7uh24eQ6j046p\nwezR1k6CsyKnQgs3Ndu1w021D6OQg3E/6YwZPjm6CwGaZyjzWUdxvCV8oRbj0Fzv\n1NiUKHllDuyLmyXMBAnKfDpThXD+XoLRx0BK0bN9FF9lV+TuYcIPNNvPas15zPaj\n31f/qlPg/SCenZUsIz/PG00XUcsBDRd6dzB1e/DsEYqPuJ2CHIMqeJMB8sI51yzx\n9DaQHT3vQZTVfwhFpe0uIN/Q8r8cMG8zRTj9j9JNYue2+laVxypJkVSQGFVgHAAw\nqiovtoGUjfIpsqKoSeJZz+LKNbSFlqdwPPPbPMih7eECgYEA/7NQDhaAFLCwuBEA\nG+sCd6oGacTNbuMYCVnypHGOis1xrHUvqa5Tv4m6kR050+M2VYTO427A/ieEXTwz\njylcwi2uwvDwwenyzKopY/MK5ZzIRS0GQqxVGSNPHAAcn0/LJl4rHZyHjhYB5w5j\nTjQl4k5MjmjJoe170DXHPE/cqDkCgYEA3mERQRZHF7sk/gSb1XMxXiCGrE1/4FIQ\n4c0lZnDXPFL5APOYzQOWI/sb0oIXKcNaDaX1XERqvPXgXahzjWsQIY/sAxbrrgli\nAjbODrWxVbk9gPGJo40HRqAwfziiacVGO1YN2ZFU1ZRty8sOTRE9pISW93ipGwWh\nkNNzVev954cCgYAiXo7PJfUXUtyeESLrnb4aKY9tHhfi5MFxWFbGBcF8JLs3zBSZ\nASaeozuhj8UbFvpRqmVIqrVkNBmVkqb3gj7Glu9bopkp53FMUz73AU8gp98/dRrX\nUWSq2VUj1VwDie0rfhLbixOpZIni7cspUtcYwR+HMMyRaGNxDBl4oN9u+QKBgQCP\nZIHuuUHAUKFq1mfxvCSiMFEGu7ZwXBqcr16lbq+rK0l6zpjB4cUnkF0BYXc0K85e\nrJvJEijNjbJOUjeogdfV/GrQFzCDeXNkQBigrZIa16aMBbOd7Ws6pEKBVnCLyXQf\nAL9PgoH0cpBV76paEXrxIboC+x/316q1q1NcnR6M8wKBgGBmPARFQFHPJScVK2Ra\n0ZyfisU1nARhofEtYUKY9wocGRpj/SIniWNSpS4Qzl7AEmU+rkASAIcPNa6dtyHg\nL3dSbD/knuIWwDsbKr4c48eKWfhh7mQBhItPXZkk8gTXVrDTIMcbI4O3FZDGsrni\nfBC5Nmq3LVhsigcZu5wU7B3O\n-----END PRIVATE KEY-----\n",
+  "client_email": "hightower@knightswatch-160700.iam.gserviceaccount.com",
+  "client_id": "102767065122139181203",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/hightower%40knightswatch-160700.iam.gserviceaccount.com"
+}

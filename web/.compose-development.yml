@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+
+  castle-black:
+
+    build:
+      context: .
+      dockerfile: .castle-black.dockerfile
+      args:
+        environment: development
+
+    container_name: wall
+
+    ports:
+      - "8080:8080"
+
+    volumes:
+      - ./:/home/node/
+      - /home/node/node_modules/
+
+    networks:
+      - westeros
+
+networks:
+
+  westeros:
+
+      driver: bridge

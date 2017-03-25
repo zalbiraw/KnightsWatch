@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+  red-keep:
+
+    build:
+      context: .
+      dockerfile: .red-keep.dockerfile
+      args:
+        environment: production
+
+    container_name: lab
+
+    command: bash ./scripts/production.sh
+
+    volumes:
+      - ./:/home/node/
+      - ../web/public:/home/node/public
+      - /home/node/public
+      - /home/node/node_modules/

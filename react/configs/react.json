@@ -1,0 +1,37 @@
+{
+  "src": {
+    "path": "src/",
+    "html": {
+      "entry": "index.html"
+    },
+    "scripts": {
+      "path": "scripts/",
+      "entry": "index.js"
+    },
+    "styles": {
+      "path": "styles/",
+      "entry": "styles.css"
+    },
+    "images": {
+      "path": "images/",
+      "entry": "**"
+    }
+  },
+  "dest": {
+    "path": "public/",
+    "html": {
+      "entry": "index.html"
+    },
+    "scripts":{
+      "path":"js/",
+      "entry": "main.js"
+    },
+    "styles":{
+      "path":"css/",
+      "entry": "styles.css"
+    },
+    "images": {
+      "path": "images/"
+    }
+  }
+}

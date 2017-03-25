@@ -1,0 +1,50 @@
+{
+  "first": {
+    "id": "first",
+    "style": "col s6",
+    "type": "text",
+    "name": "first",
+    "required": true,
+    "label": "First Name"
+  },
+  "last": {
+    "id": "last",
+    "style": "col s6",
+    "type": "text",
+    "name": "last",
+    "required": true,
+    "label": "Last Name"
+  },
+  "position": {
+    "id": "position",
+    "style": "col s6",
+    "type": "text",
+    "name": "position",
+    "required": true,
+    "label": "Position"
+  },
+  "team": {
+    "id": "team",
+    "style": "col s6",
+    "type": "text",
+    "name": "team",
+    "required": true,
+    "label": "Team"
+  },
+  "weight": {
+    "id": "weight",
+    "style": "col s6",
+    "type": "text",
+    "name": "weight",
+    "required": true,
+    "label": "Weight"
+  },
+  "height": {
+    "id": "height",
+    "style": "col s6",
+    "type": "text",
+    "name": "height",
+    "required": true,
+    "label": "Height"
+  }
+}

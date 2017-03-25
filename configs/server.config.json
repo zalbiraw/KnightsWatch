@@ -1,9 +1,0 @@
-{
-  "port": 5000,
-  "path": "./src/server/",
-  "entry": "server.js",
-  "jwt": {
-    "secret": "4f45c83b69ec4fa7f8ad8bab84c622ef",
-    "session": false
-  }
-}

@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+
+  red-keep:
+
+    build:
+      context: .
+      dockerfile: .red-keep.dockerfile
+      args:
+        environment: development
+
+    container_name: lab
+
+    ports:
+      - "3000:3000"
+
+    volumes:
+      - ./:/home/node/
+      - ../web/public:/home/node/public
+      - /home/node/public
+      - /home/node/node_modules/
+
+    networks:
+      - web_westeros
+
+networks:
+  web_westeros:
+    external: true

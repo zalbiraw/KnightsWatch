@@ -1,0 +1,10 @@
+{
+  "script": "./src/server.js",
+  "watch": [
+    "./configs",
+    "./src",
+    "helpers.js",
+    "knexfile.js"
+  ],
+  "exec": "babel-node"
+}
