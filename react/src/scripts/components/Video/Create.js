@@ -12,12 +12,18 @@ const Create = ({ functions }) => (
     onSubmit  = {(e) => {
       e.preventDefault()
 
-      const target  = $(e.currentTarget),
-            body    = functions.getFormData($('#' + form))
+      const success = async json => {
+        console.log(json)
+      }
 
-      const success = json => functions.setRedirect(json.id)
+      functions.post('/api/secure/google-auth/', { iat: Math.ceil(Date.now() / 1000) }, { success })
 
-      functions.post('/api/secure/video', body, { success })
+      // const target  = $(e.currentTarget),
+      //       body    = functions.getFormData($('#' + form))
+
+      // const success = json => functions.setRedirect(json.id)
+
+      // functions.post('/api/secure/video', body, { success })
     }}
   >
     <div className = 'row'>

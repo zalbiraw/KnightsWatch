@@ -10,11 +10,11 @@ import Authentication from './passport/authentication'
 
 import { configs } from '../helpers'
 
-const { react, jwt, server }  = configs,
-      { port }                = server,
-      app                     = express(),
-      tables                  = Tables(knex),
-      authentication          = Authentication(configs, tables.Users)
+const { react }       = configs,
+      { port }        = configs.server,
+      app             = express(),
+      tables          = Tables(knex),
+      authentication  = Authentication(configs, tables.Users)
 
 app.use(express.static(path.join(__dirname + '/../' + react.path)))
 
@@ -22,10 +22,7 @@ app.use(parser.json())
 
 app.use(authentication.initialize())
 
-app.use('/api', api(tables, {
-  secret: jwt.secret,
-  authenticate: authentication.authenticate
-}))
+app.use('/api', api(tables, configs, authentication.authenticate))
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/../' + react.path + react.entry))

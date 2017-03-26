@@ -1,3 +1,5 @@
+import 'whatwg-fetch'
+
 const Requests = (coin, setError, removeUser) => {
 
   let auth = {}
