@@ -13,10 +13,9 @@
     "crypto": "0.0.3",
     "express": "4.14.0",
     "express-session": "1.15.0",
+    "googleapis": "18.0.0",
     "jsonwebtoken": "7.2.1",
-    "jws": "3.1.4",
     "knex": "0.12.9",
-    "node-fetch": "^1.6.3",
     "passport": "0.3.2",
     "passport-jwt": "2.2.1",
     "pg": "6.1.2"

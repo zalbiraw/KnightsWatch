@@ -16,7 +16,7 @@ const Create = ({ functions }) => (
         console.log(json)
       }
 
-      functions.post('/api/secure/google-auth/', { iat: Math.ceil(Date.now() / 1000) }, { success })
+      functions.get('/api/secure/google-auth/', { success })
 
       // const target  = $(e.currentTarget),
       //       body    = functions.getFormData($('#' + form))
@@ -27,7 +27,23 @@ const Create = ({ functions }) => (
     }}
   >
     <div className = 'row'>
-      <div className = 'input-field col s6 offset-s6'>
+      <Field field = {fields.title} />
+      <Field field = {fields.tags} />
+    </div>
+    <div className = 'row'>
+      <div className = 'file-field input-field col s6'>
+        <div className = 'btn'>
+          <span>Video file</span>
+          <input
+            type    = 'file'
+            accept  = 'video/*'
+          />
+        </div>
+        <div className = 'file-path-wrapper'>
+          <input className = 'file-path validate' type = 'text'/>
+        </div>
+      </div>
+      <div className = 'input-field col s6'>
         <button
           id        = 'create-video-button'
           className = 'waves-effect waves-light btn'
